@@ -1,0 +1,22 @@
+@import '../../styles/settings';
+
+.first-row__menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.second-row__menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: $xxs-space;
+
+  &__filter {
+    display: flex;
+  }
+}
+
+.tasks__container {
+  margin-top: $s-space;
+}

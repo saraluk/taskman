@@ -1,0 +1,19 @@
+@import '../../styles/settings';
+
+.nav {
+  margin-top: $xxxl-space;
+
+  &__item {
+    display: block;
+    padding: $s-space;
+    border-radius: 40px 0 0 40px;
+    background: $dark-blue-color;
+    @include font-styles($white, $small-size, $regular)
+  }
+}
+
+.is-active--box {
+  @extend .nav__item;
+  background: $white;
+  @include font-styles($darker-grey-color, $small-size, $semi-bold)
+}

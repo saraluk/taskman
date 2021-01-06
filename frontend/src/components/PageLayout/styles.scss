@@ -1,0 +1,40 @@
+@import '../../styles/settings';
+
+.page {
+  display: grid;
+  grid-template-columns: 240px auto 320px;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+
+
+  &__nav {
+    padding-left: $xxl-space;
+    background: $dark-blue-color;
+  }
+
+  &__main {
+    background: $white;
+    padding: $xxl-space;
+  }
+
+  &__aside {
+    background: $light-grey-color;
+  }
+}
+
+.button--signout {
+  background: none;
+  border: none;
+  color: $white;
+  padding: $xxs-space;
+  position: fixed;
+  bottom: $xxl-space;
+  cursor: pointer;
+
+  &:focus {
+    outline:0 !important;
+    
+  }
+}
+

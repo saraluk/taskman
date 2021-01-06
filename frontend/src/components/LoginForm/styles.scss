@@ -1,0 +1,20 @@
+@import '../../styles/settings';
+
+.login {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: $xs-space;
+
+  &__input {
+    width: 300px;
+    padding: $xs-space;
+    border: none;
+    border-radius: $s-radius;
+    background: $light-grey-color;
+    @include font-styles($black, $small-size, $extra-light);
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

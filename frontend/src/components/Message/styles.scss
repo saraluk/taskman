@@ -1,0 +1,26 @@
+@import '../../styles/settings';
+
+.text--danger {
+  color: red;
+  font-size: $smaller-size;
+  margin: 0;
+  padding: 0;
+}
+
+.text--success {
+  color:$dark-blue-color;
+  font-size: $small-size;
+  background: rgba($dark-blue-color, 0.25);
+  border: 1px solid $dark-blue-color;
+  margin-bottom: $xs-space;
+  padding: $xs-space;
+
+  transition: max-height 0.2s ease-in-out; 
+  height:auto;
+  max-height:100px; 
+
+}
+
+.text--success-collapse {
+  max-height:0px; 
+}

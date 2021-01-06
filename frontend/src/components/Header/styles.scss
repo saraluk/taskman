@@ -1,0 +1,23 @@
+@import '../../styles/settings';
+
+.header {
+  background: $dark-grey-color;
+  height: 64px;
+  width: 100vw;
+  padding: $s-space $xxl-space;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    width: 106px;
+    height: 23px;
+  }
+
+  &__button--signout {
+    background: none;
+    border: none;
+    color: $white;
+    padding: $xxs-space;
+  }
+}

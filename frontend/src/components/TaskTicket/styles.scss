@@ -1,0 +1,13 @@
+@import '../../styles/settings';
+
+.task-ticket__container {
+  width: 700px;
+  height: 200px;
+  display: grid;
+  grid-template-columns: 1fr 250px 8px;
+  background: $light-grey-color;
+  box-shadow: 0px 3px 6px $medium-grey-color;
+  border-radius: $s-radius;
+  padding: $xs-space;
+  
+}

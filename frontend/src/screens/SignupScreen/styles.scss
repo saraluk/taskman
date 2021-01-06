@@ -1,0 +1,51 @@
+@import '../../styles/settings';
+
+.signupPage {
+  display: grid;
+  align-items: center;
+  height: 100vh;
+
+  &__container {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+
+    max-width: 640px;
+    margin: auto auto;
+    padding: 0 $xxxl-space;
+  }
+
+  &__header {
+    margin: $s-space 0;
+    @include font-styles($black, $extra-large-size, $bold);
+  }
+
+  &__nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    width: 300px;
+    margin-bottom: $xxl-space;
+    // border: 1px solid black;
+
+    &__item {
+      width: 100px;
+      height: 40px;
+      border-bottom: 5px solid $medium-grey-color;
+      text-align: center;
+      @include font-styles($medium-grey-color, $medium-size, $semi-bold);
+    }
+  }
+
+  &__form {
+    display: grid;
+    justify-items: center;
+    width: 300px;
+    // border: 1px solid black;
+  }
+}
+
+.is-active {
+  border-bottom: 5px solid $dark-blue-color;
+  @include font-styles($dark-blue-color, $medium-size, $semi-bold);
+}

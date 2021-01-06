@@ -1,0 +1,22 @@
+@import '../../styles/settings';
+
+.user-profile__block {
+  display: grid;
+  justify-items: center;
+  padding-right: $s-space;
+
+  &__image {
+    width: 80px;
+    border-radius: 50%;
+    margin-top: $xxl-space;
+  }
+ 
+  &__title {
+    margin-top: $xs-space;
+    @include font-styles($white, $smaller-size, $regular)
+  }
+
+  &__subtitle {
+    @include font-styles($white, $smaller-size, $light)
+  }
+}

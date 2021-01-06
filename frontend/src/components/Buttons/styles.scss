@@ -1,0 +1,42 @@
+@import '../../styles/settings';
+
+.button {
+  &:focus {
+    outline:0 !important;
+  }
+}
+
+.button--rec-solid-blue {
+  @extend .button; 
+  margin-top: $xs-space;
+  padding: $xs-space;
+  border: none;
+  border-radius: $s-radius;
+  background: $dark-blue-color;
+  box-shadow: 0px 3px 6px $medium-grey-color;
+  @include font-styles($white, $medium-size, $semi-bold);
+}
+
+.button--rec-rad-solid-blue {
+  @extend .button; 
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: $l-radius;
+  background: $dark-blue-color;
+  @include font-styles($white, $small-size, $regular);
+}
+
+.button--rec-rad-solid-grey {
+  @extend .button; 
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: $l-radius;
+  background: $medium-grey-color;
+  @include font-styles($dark-grey-color, $small-size, $light);
+}
