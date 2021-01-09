@@ -1,29 +1,47 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const taskSchema = new mongoose.Schema({
+const tagSchema = new mongoose.Schema({
+  tag: {
+    type: String,
+  },
+});
+
+const taskSchema = new mongoose.Schema(
+  {
     description: {
-        type:String,
-        required:true,
-        trim: true
-    }, 
+      type: String,
+      required: true,
+      trim: true,
+    },
+    details: {
+      type: String,
+      trim: true,
+    },
     completed: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false,
     },
     owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User'
-    }, 
-    tags: [{
-        tagName: {
-            type: String
-        }
-    }]
-}, {
-    timestamps: true
-})
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    },
+    dueDate: {
+      type: Date,
+    },
+    tags: [tagSchema],
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Task = mongoose.model('Task', taskSchema)
+taskSchema.virtual('tag', {
+  ref: 'Tag',
+  localField: '_id',
+  foreignField: 'task',
+});
 
-module.exports = Task
+const Task = mongoose.model('Task', taskSchema);
+
+module.exports = Task;

@@ -16,5 +16,9 @@
     &:focus {
       outline: none;
     }
+
+    &::placeholder {
+      @include font-styles($medium-grey-color, $smaller-size, $light);
+    }
   }
 }

@@ -7,10 +7,12 @@ $medium-grey-color: #bebebe;
 $light-grey-color: #f2f2f2;
 $white: #ffffff;
 $black: #000000;
+$green: #4eb9a4;
+$red: #c45a56;
 
 // Font Size
-$mini-size: 0.8rem;
-$smaller-size: 1.2rem;
+$mini-size: 1rem;
+$smaller-size: 1.4rem;
 $small-size: 1.6rem;
 $medium-size: 2rem;
 $large-size: 2.4rem;
@@ -29,7 +31,7 @@ $extra-bold: 800;
 
 // Border readius
 $s-radius: 5px;
-$m-radious: 10px;
+$m-radius: 10px;
 $l-radius: 40px;
 
 @mixin font-styles($color, $size, $weight) {

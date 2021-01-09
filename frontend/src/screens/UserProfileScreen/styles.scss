@@ -5,11 +5,13 @@
   grid-template-columns: 1fr;
   row-gap: $xs-space;
 
-
   &__group-input {
-    display:grid
-  }
+    display: grid;
 
+    label {
+      @include font-styles($dark-blue-color, $smaller-size, $regular);
+    }
+  }
 
   &__input {
     width: 320px;
@@ -21,6 +23,10 @@
 
     &:focus {
       outline: none;
+    }
+
+    &::placeholder {
+      @include font-styles($medium-grey-color, $smaller-size, $light);
     }
   }
 
@@ -37,7 +43,7 @@
     @include font-styles($white, $small-size, $regular);
 
     &:focus {
-      outline:0 !important;
+      outline: 0 !important;
     }
   }
 }

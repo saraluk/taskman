@@ -2,12 +2,12 @@
 
 .button {
   &:focus {
-    outline:0 !important;
+    outline: 0 !important;
   }
 }
 
 .button--rec-solid-blue {
-  @extend .button; 
+  @extend .button;
   margin-top: $xs-space;
   padding: $xs-space;
   border: none;
@@ -17,8 +17,21 @@
   @include font-styles($white, $medium-size, $semi-bold);
 }
 
+.button--rec-solid-grey {
+  @extend .button;
+  margin-left: $xs-space;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: $s-radius;
+  background: $medium-grey-color;
+  @include font-styles($black, $small-size, $regular);
+}
+
 .button--rec-rad-solid-blue {
-  @extend .button; 
+  @extend .button;
   height: 40px;
   display: flex;
   align-items: center;
@@ -30,7 +43,7 @@
 }
 
 .button--rec-rad-solid-grey {
-  @extend .button; 
+  @extend .button;
   height: 40px;
   display: flex;
   align-items: center;

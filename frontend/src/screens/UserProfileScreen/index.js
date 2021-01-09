@@ -1,79 +1,119 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getUserDetails, updateUserProfile } from '../../actions/userActions'
-import Message from '../../components/Message'
-import PageTitle from '../../components/PageTitle'
-import './styles.scss'
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserDetails, updateUserProfile } from '../../actions/userActions';
+import Message from '../../components/Message';
+import PageTitle from '../../components/PageTitle';
+import { USER_UPDATE_PROFILE_RESET } from '../../constants/userConstants';
+import './styles.scss';
 
 const UserProfileScreen = ({ history }) => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [message, setMessage] = useState(null)
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [message, setMessage] = useState(null);
+  const [updated, setUpdated] = useState(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const userDetails = useSelector(state => state.userDetails)
-  const { user } = userDetails
+  const userDetails = useSelector((state) => state.userDetails);
+  const { user } = userDetails;
 
-  const userLogin = useSelector(state => state.userLogin)
-  const { userInfo } = userLogin
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
-  const userUpdateProfile = useSelector(state => state.userUpdateProfile)
-  const { error, success } = userUpdateProfile
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { error, success } = userUpdateProfile;
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login')
+      history.push('/login');
     } else {
-      if(!user.name) {
-        dispatch(getUserDetails())
+      if (!user || !user.name || success) {
+        if (success) {
+          setUpdated(true);
+        }
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
+        dispatch(getUserDetails());
       } else {
-        setName(user.name)
-        setEmail(user.email)
+        setName(user.name);
+        setEmail(user.email);
       }
     }
-  }, [dispatch, history, userInfo, user]) 
-
+  }, [dispatch, history, userInfo, user, success]);
 
   const submitHandler = (e) => {
-    e.preventDefault()
-    setMessage(null)
+    e.preventDefault();
+    setMessage(null);
+    setUpdated(false);
     if (password !== confirmPassword) {
-      setMessage('Password do not match')
+      setMessage('Password do not match');
     } else {
-        dispatch(updateUserProfile({ name, email, password }))
+      dispatch(updateUserProfile({ name, email, password }));
     }
-  }
+  };
 
   return (
     <>
-      <PageTitle title={'User Profile'}/>
-      {success ? <Message variant="text--success">Profile updated</Message> : <Message variant="text--success-collapse"></Message>}
-      <form className="user-profile__form" onSubmit={submitHandler}>
-        <div className="user-profile__form__group-input">
+      <PageTitle title={'User Profile'} />
+      {updated ? (
+        <Message variant='text--success'>Profile updated</Message>
+      ) : (
+        <Message variant='text--success-collapse'></Message>
+      )}
+      <form className='user-profile__form' onSubmit={submitHandler}>
+        <div className='user-profile__form__group-input'>
           <label>Name</label>
-          <input className="user-profile__form__input" type="text" name="name" value={name} placeholder="Enter name" onChange={(e) => setName(e.target.value)}/>
+          <input
+            className='user-profile__form__input'
+            type='text'
+            name='name'
+            value={name}
+            placeholder='Enter name'
+            onChange={(e) => setName(e.target.value)}
+          />
         </div>
-        <div className="user-profile__form__group-input">
+        <div className='user-profile__form__group-input'>
           <label>Email</label>
-          <input className="user-profile__form__input" type="text" name="email" value={email} placeholder="Enter email" onChange={(e) => setEmail(e.target.value)}/>
+          <input
+            className='user-profile__form__input'
+            type='text'
+            name='email'
+            value={email}
+            placeholder='Enter email'
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-        <div className="user-profile__form__group-input">
+        <div className='user-profile__form__group-input'>
           <label>Password</label>
-          <input className="user-profile__form__input" type="password" name="password" value={password} placeholder="Enter password" onChange={(e) => setPassword(e.target.value)}/>
+          <input
+            className='user-profile__form__input'
+            type='password'
+            name='password'
+            value={password}
+            placeholder='Enter password (minimum 8 characters)'
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
-        <div className="user-profile__form__group-input">
+        <div className='user-profile__form__group-input'>
           <label>Confirm Password</label>
-          <input className="user-profile__form__input" type="password" name="confirmPassword" value={confirmPassword} placeholder="Confirm password" onChange={(e) => setConfirmPassword(e.target.value)}/>
+          <input
+            className='user-profile__form__input'
+            type='password'
+            name='confirmPassword'
+            value={confirmPassword}
+            placeholder='Confirm password'
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
         </div>
-        <button className="user-profile__form__button" type="submit">Update</button>
+        <button className='user-profile__form__button' type='submit'>
+          Update
+        </button>
       </form>
-      {message && <Message variant="text--danger">{message}</Message>}
-      {error && <Message variant="text--danger">{error}</Message>}
+      {message && <Message variant='text--danger'>{message}</Message>}
+      {error && <Message variant='text--danger'>{error}</Message>}
     </>
-  )
-}
+  );
+};
 
-export default UserProfileScreen
+export default UserProfileScreen;

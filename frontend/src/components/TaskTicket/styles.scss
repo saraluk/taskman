@@ -1,13 +1,51 @@
 @import '../../styles/settings';
 
-.task-ticket__container {
+.task-ticket {
   width: 700px;
-  height: 200px;
+  height: 120px;
   display: grid;
-  grid-template-columns: 1fr 250px 8px;
+  grid-template-columns: 1fr 300px 16px;
   background: $light-grey-color;
-  box-shadow: 0px 3px 6px $medium-grey-color;
+  box-shadow: 2px 2px 5px lighten($medium-grey-color, 10%);
   border-radius: $s-radius;
-  padding: $xs-space;
-  
+  font-size: $smaller-size;
+  color: $black;
+  margin-bottom: $m-space;
+
+  &__left-column {
+    border-right: 1px dashed $dark-grey-color;
+    padding: $xs-space;
+  }
+
+  &__left-column .task-ticket__detail-list:first-child {
+    height: 60px;
+  }
+
+  &__right-column {
+    padding: $xs-space;
+  }
+
+  &__status-tab {
+    border-radius: 0px $s-radius $s-radius 0px;
+  }
+
+  &__detail-list {
+    display: flex;
+
+    &__label {
+      font-weight: $semi-bold;
+    }
+
+    &__desc {
+      font-weight: $regular;
+    }
+  }
+}
+
+.green-tab {
+  background: $green;
+}
+
+.red-tab {
+  background: $red;
 }

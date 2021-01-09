@@ -1,0 +1,124 @@
+@import '../../styles/settings';
+
+.create-task__form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content;
+  row-gap: $xs-space;
+  border-radius: $m-radius;
+  background: $white;
+  padding-bottom: $xl-space;
+  box-shadow: 1px 2px 5px lighten($medium-grey-color, 10%);
+
+  &__group-input {
+    display: block;
+    margin: 0px $xl-space;
+
+    label {
+      @include font-styles($dark-blue-color, $smaller-size, $regular);
+    }
+  }
+
+  &__group-button {
+    display: flex;
+  }
+
+  &__input--checkbox {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 4px $l-space;
+    border-radius: $m-radius $m-radius 0px 0px;
+
+    label {
+      margin-right: $xxs-space;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    padding: $xs-space;
+    border: none;
+    border-radius: $s-radius;
+    background: $light-grey-color;
+    @include font-styles($black, $small-size, $extra-light);
+
+    &:focus {
+      outline: $dark-blue-color;
+    }
+
+    &::placeholder {
+      @include font-styles($medium-grey-color, $smaller-size, $light);
+    }
+  }
+
+  &__button {
+    height: 40px;
+    width: 120px;
+    margin-top: $l-space;
+    margin-right: $s-space;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: $l-radius;
+    background: $dark-blue-color;
+    @include font-styles($white, $small-size, $regular);
+
+    &:focus {
+      outline: 0 !important;
+    }
+  }
+}
+
+.button--rec-solid-grey {
+  margin-left: $xs-space;
+  width: 140px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: $s-radius;
+  background: $medium-grey-color;
+  @include font-styles($black, $small-size, $regular);
+
+  &:focus {
+    outline: 0 !important;
+  }
+}
+
+.bg-blue {
+  background: $dark-blue-color;
+  color: $white;
+}
+
+.input__box--short {
+  display: block;
+  width: 200px;
+  height: 40px;
+}
+
+.input__box {
+  height: 40px;
+}
+
+.input__boxarea {
+  height: auto;
+  resize: vertical;
+}
+
+.inline {
+  display: flex;
+  align-items: flex-start;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: $xs-space;
+}
+
+.check-icon__circle {
+  font-size: $medium-size;
+}

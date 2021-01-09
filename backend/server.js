@@ -1,22 +1,22 @@
-const express = require('express')
-const dotenv = require('dotenv')
-const connectDB = require('./db/mongoose')
+const express = require('express');
+const dotenv = require('dotenv');
+const connectDB = require('./db/mongoose');
 
-dotenv.config()
+dotenv.config();
 
 // issue the connection to database
-connectDB()
+connectDB();
 
-const userRouter = require('./routers/user')
-const taskRouter = require('./routers/task')
+const userRouter = require('./routers/user');
+const taskRouter = require('./routers/task');
 
-const app = express()
+const app = express();
 
-app.use(express.json())
-app.use(userRouter)
-app.use(taskRouter)
+app.use(express.json());
+app.use(userRouter);
+app.use(taskRouter);
 
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 4000;
 app.listen(port, () => {
-    console.log('Server is up on port ' + port)
-})
+  console.log('Server is up on port ' + port);
+});
