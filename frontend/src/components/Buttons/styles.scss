@@ -53,3 +53,22 @@
   background: $medium-grey-color;
   @include font-styles($dark-grey-color, $small-size, $light);
 }
+
+.button--mini {
+  height: 20px;
+  @include font-styles($black, $smaller-size, $regular);
+}
+
+.button--round-white {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $dark-blue-color;
+  border-radius: $l-radius;
+  background: $white;
+  margin-right: $xs-space;
+  @include font-styles($dark-blue-color, $medium-size, $semi-bold);
+  box-shadow: 0px 2px 5px lighten($medium-grey-color, 10%);
+}

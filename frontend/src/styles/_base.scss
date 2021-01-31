@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import './settings';
 
 * {
@@ -16,6 +16,7 @@ body {
   line-height: 1.8;
   font-family: 'Montserrat', sans-serif;
   @include font-styles($black, $small-size, $regular);
+  overflow: hidden;
 
   a {
     text-decoration: none;
@@ -35,4 +36,73 @@ body {
     list-style-type: none;
   }
 
+  pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+  }
+}
+
+.inline-wrapper {
+  display: flex;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: $xs-space;
+
+  &__group-input {
+    display: grid;
+
+    label {
+      @include font-styles($dark-blue-color, $smaller-size, $regular);
+    }
+  }
+
+  &__input {
+    width: 100%;
+    padding: $xs-space;
+    border: none;
+    border-radius: $s-radius;
+    background: $light-grey-color;
+    @include font-styles($black, $small-size, $extra-light);
+
+    &:focus {
+      outline: $dark-blue-color;
+    }
+
+    &::placeholder {
+      @include font-styles($medium-grey-color, $smaller-size, $light);
+    }
+  }
+}
+
+.input--short {
+  width: 320px;
+}
+
+.group-buttons {
+  display: flex;
+  margin-top: $l-space;
+}
+
+.green-tab {
+  background: $green;
+}
+
+.red-tab {
+  background: $red;
+}
+
+.blue-tab {
+  background: $dark-blue-color;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 1.2;
 }

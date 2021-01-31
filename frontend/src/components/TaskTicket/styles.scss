@@ -1,10 +1,10 @@
 @import '../../styles/settings';
 
 .task-ticket {
-  width: 700px;
-  height: 120px;
   display: grid;
-  grid-template-columns: 1fr 300px 16px;
+  min-width: 500px;
+  grid-template-columns: 50px minmax(200px, 1fr) 200px auto 16px;
+  grid-template-rows: minmax(80px, auto);
   background: $light-grey-color;
   box-shadow: 2px 2px 5px lighten($medium-grey-color, 10%);
   border-radius: $s-radius;
@@ -12,40 +12,41 @@
   color: $black;
   margin-bottom: $m-space;
 
-  &__left-column {
-    border-right: 1px dashed $dark-grey-color;
+  &__checkbox {
+    justify-self: center;
+    align-self: center;
+    font-size: $large-size;
+    color: $darker-blue-color;
+  }
+
+  &__desc {
+    padding: $xs-space;
+
+    div {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__status__date {
+    border-left: 1px dashed $darker-blue-color;
     padding: $xs-space;
   }
 
-  &__left-column .task-ticket__detail-list:first-child {
-    height: 60px;
-  }
-
-  &__right-column {
+  &__buttons {
+    display: grid;
+    row-gap: $xxs-space;
     padding: $xs-space;
+    align-content: center;
   }
 
-  &__status-tab {
-    border-radius: 0px $s-radius $s-radius 0px;
+  &__color-tab {
+    border-radius: 0 $s-radius $s-radius 0;
   }
 
-  &__detail-list {
+  &__tags {
     display: flex;
-
-    &__label {
-      font-weight: $semi-bold;
-    }
-
-    &__desc {
-      font-weight: $regular;
-    }
+    flex-wrap: wrap;
+    line-height: 1.2;
   }
-}
-
-.green-tab {
-  background: $green;
-}
-
-.red-tab {
-  background: $red;
 }

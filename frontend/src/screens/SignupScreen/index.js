@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import SignupForm from '../../components/SignupForm';
 import './styles.scss';
-import PageTitle from '../../components/PageTitle';
+import PageTitle from '../../components/PageHeader/PageTitle';
 import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../../actions/userActions';
 
@@ -41,7 +41,7 @@ const SignupPage = ({ history }) => {
   return (
     <div className='signupPage'>
       <div className='signupPage__container'>
-        <PageTitle title='Welcome' />
+        <PageTitle>Welcome</PageTitle>
         <div className='signupPage__nav'>
           <NavLink
             to='/login'

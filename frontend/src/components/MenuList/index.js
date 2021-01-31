@@ -1,14 +1,16 @@
-import React from 'react'
-import { ButtonRecRadSolidBlue } from '../Buttons'
-import './styles.scss'
+import React from 'react';
+import { ButtonRecRadSolidBlue } from '../Buttons';
+import './styles.scss';
 
-const MenuList = ({ menuLabel, buttonLabel, onClickHandler}) => {
+const MenuList = ({ menuLabel, buttonLabel, onClickHandler }) => {
   return (
-    <div className="menu-list">
+    <div className='menu-list'>
       <p>{menuLabel}</p>
-      <ButtonRecRadSolidBlue text={buttonLabel} width={'140px'} onClickHandler={onClickHandler}/>
+      <ButtonRecRadSolidBlue width={'140px'} onClickHandler={onClickHandler}>
+        {buttonLabel}
+      </ButtonRecRadSolidBlue>
     </div>
-  )
-}
+  );
+};
 
-export default MenuList
+export default MenuList;

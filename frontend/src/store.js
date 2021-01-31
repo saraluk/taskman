@@ -7,15 +7,22 @@ import {
   userSignupReducer,
   userUpdateProfileReducer,
 } from './reducers/userReducers';
-import { taskCreateReducer, taskListReducer } from './reducers/taskReducers';
+import {
+  taskCreateReducer,
+  taskDeleteReducer,
+  taskDetailsReducer,
+  taskListReducer,
+} from './reducers/taskReducers';
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userSignup: userSignupReducer,
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
-  taskCreate: taskCreateReducer,
   taskList: taskListReducer,
+  taskDetails: taskDetailsReducer,
+  taskCreate: taskCreateReducer,
+  taskDelete: taskDeleteReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo')

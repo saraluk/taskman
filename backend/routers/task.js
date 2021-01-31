@@ -61,7 +61,7 @@ router.get('/api/tasks', auth, async (req, res) => {
 // @route   GET /api/tasks/:id
 // @access  Private
 router.get('/api/tasks/:id', auth, async (req, res) => {
-  const _id = req.params._id;
+  const _id = req.params.id;
   try {
     const task = await Task.findOne({ _id: _id, owner: req.user._id });
 
@@ -122,21 +122,5 @@ router.delete('/api/tasks/:id', auth, async (req, res) => {
     res.status(500).send();
   }
 });
-
-// router.post('/api/tasks/tags', async (req, res) => {
-//   const tag = new Tag(req.body)
-
-//   try {
-//     const existTag = await Tag.findOne({ tag })
-//     if(existTag) {
-//       res.send()
-//     }
-
-//     await tag.save()
-//     res.status(201).send(tag)
-//   } catch (e) {
-//     res.status(400).send(e)
-//   }
-// })
 
 module.exports = router;

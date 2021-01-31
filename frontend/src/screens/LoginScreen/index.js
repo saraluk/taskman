@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../actions/userActions';
-import PageTitle from '../../components/PageTitle';
+import PageTitle from '../../components/PageHeader/PageTitle';
 
 import './styles.scss';
 
@@ -27,7 +27,7 @@ const LoginPage = ({ history }) => {
   return (
     <div className='loginPage'>
       <div className='loginPage__container'>
-        <PageTitle title='Welcome' />
+        <PageTitle>Welcome</PageTitle>
         <div className='loginPage__nav'>
           <NavLink
             to='/login'

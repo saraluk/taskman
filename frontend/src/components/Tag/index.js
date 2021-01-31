@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import './styles.scss';
 
-const Tag = ({ removeTagHandler, tagName, display }) => {
+const Tag = ({ removeTagHandler, tagName, removable }) => {
   return (
     <span className='tag'>
       {tagName}
-      {!display && (
+      {removable && (
         <span
           className='remove-tag__icon'
           onClick={() => removeTagHandler(tagName)}

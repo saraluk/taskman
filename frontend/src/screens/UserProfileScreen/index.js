@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserDetails, updateUserProfile } from '../../actions/userActions';
+import {
+  ButtonRecRadSolidBlue,
+  SubmitButtonRecRadSolidBlue,
+} from '../../components/Buttons';
 import Message from '../../components/Message';
-import PageTitle from '../../components/PageTitle';
+import PageHeader from '../../components/PageHeader';
 import { USER_UPDATE_PROFILE_RESET } from '../../constants/userConstants';
 import './styles.scss';
 
@@ -53,19 +57,27 @@ const UserProfileScreen = ({ history }) => {
     }
   };
 
+  const cancelHandler = () => {
+    history.push('/settings');
+  };
+
+  const backHandler = () => {
+    history.push('/settings');
+  };
+
   return (
     <>
-      <PageTitle title={'User Profile'} />
+      <PageHeader backTo={backHandler}>User Profile</PageHeader>
       {updated ? (
         <Message variant='text--success'>Profile updated</Message>
       ) : (
         <Message variant='text--success-collapse'></Message>
       )}
-      <form className='user-profile__form' onSubmit={submitHandler}>
-        <div className='user-profile__form__group-input'>
+      <form className='form' onSubmit={submitHandler}>
+        <div className='form__group-input'>
           <label>Name</label>
           <input
-            className='user-profile__form__input'
+            className='form__input input--short'
             type='text'
             name='name'
             value={name}
@@ -73,10 +85,10 @@ const UserProfileScreen = ({ history }) => {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div className='user-profile__form__group-input'>
+        <div className='form__group-input'>
           <label>Email</label>
           <input
-            className='user-profile__form__input'
+            className='form__input input--short'
             type='text'
             name='email'
             value={email}
@@ -84,10 +96,10 @@ const UserProfileScreen = ({ history }) => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className='user-profile__form__group-input'>
+        <div className='form__group-input'>
           <label>Password</label>
           <input
-            className='user-profile__form__input'
+            className='form__input input--short'
             type='password'
             name='password'
             value={password}
@@ -95,10 +107,10 @@ const UserProfileScreen = ({ history }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className='user-profile__form__group-input'>
+        <div className='form__group-input'>
           <label>Confirm Password</label>
           <input
-            className='user-profile__form__input'
+            className='form__input input--short'
             type='password'
             name='confirmPassword'
             value={confirmPassword}
@@ -106,9 +118,14 @@ const UserProfileScreen = ({ history }) => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
-        <button className='user-profile__form__button' type='submit'>
-          Update
-        </button>
+        <div className='group-buttons'>
+          <SubmitButtonRecRadSolidBlue marginRight='16px'>
+            Update
+          </SubmitButtonRecRadSolidBlue>
+          <ButtonRecRadSolidBlue onClickHandler={cancelHandler}>
+            Cancel
+          </ButtonRecRadSolidBlue>
+        </div>
       </form>
       {message && <Message variant='text--danger'>{message}</Message>}
       {error && <Message variant='text--danger'>{error}</Message>}

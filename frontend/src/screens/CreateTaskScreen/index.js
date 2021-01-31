@@ -1,18 +1,21 @@
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { faCircle } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react';
 import Message from '../../components/Message';
-import PageTitle from '../../components/PageTitle';
 import Tag from '../../components/Tag';
 import { useDispatch, useSelector } from 'react-redux';
 import { createTask } from '../../actions/taskActions';
+import Card from '../../components/Card';
+import {
+  ButtonRecRadSolidBlue,
+  ButtonRecSolidGrey,
+  SubmitButtonRecRadSolidBlue,
+} from '../../components/Buttons';
+
 import './styles.scss';
+import PageHeader from '../../components/PageHeader';
 
 const CreateTask = ({ history }) => {
   const [description, setDescription] = useState('');
   const [details, setDetails] = useState('');
-  const [completed, setCompleted] = useState(false);
   const [tag, setTag] = useState('');
   const [tags, setTags] = useState([]);
   const [dueDate, setDueDate] = useState('');
@@ -50,6 +53,7 @@ const CreateTask = ({ history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    const completed = false;
     dispatch(
       createTask(description, details, completed, dueDate, tags, history)
     );
@@ -70,42 +74,31 @@ const CreateTask = ({ history }) => {
     setTags(remainTags);
   };
 
-  console.log(dueDate);
+  const cancelHandler = () => {
+    history.push('/dashboard');
+  };
 
   return (
     <div>
-      <PageTitle title={'Create New Task'} />
+      <PageHeader backTo={cancelHandler}>Create Task</PageHeader>
       <form onSubmit={submitHandler}>
-        <div className='create-task__form'>
-          <div className='create-task__form__input--checkbox bg-blue'>
-            <span onClick={() => setCompleted(!completed)}>
-              <label>COMPLETED</label>
-              {completed ? (
-                <span className='check-icon__circle'>
-                  <FontAwesomeIcon icon={faCheckCircle} />
-                </span>
-              ) : (
-                <span className='check-icon__circle'>
-                  <FontAwesomeIcon icon={faCircle} />
-                </span>
-              )}
-            </span>
-          </div>
-          <div className='create-task__form__group-input'>
+        <Card cardColor='blue-tab'>
+          <div className='form__group-input'>
             <label>Description</label>
             <input
-              className='create-task__form__input input__box'
+              className='form__input'
               type='text'
               name='description'
+              maxLength='100'
               value={description}
-              placeholder='Enter description'
+              placeholder='Enter description (maximum 100 characters)'
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-          <div className='create-task__form__group-input'>
+          <div className='form__group-input'>
             <label>Details</label>
             <textarea
-              className='create-task__form__input input__boxarea'
+              className='form__input'
               type='text'
               name='details'
               rows='4'
@@ -114,34 +107,30 @@ const CreateTask = ({ history }) => {
               onChange={(e) => setDetails(e.target.value)}
             />
           </div>
-          <div className='create-task__form__group-input'>
+          <div className='form__group-input'>
             <label>Due Date</label>
             <input
-              className='create-task__form__input input__box--short'
+              className='form__input input--short'
               type='date'
               name='dueDate'
               value={dueDate}
               onChange={(e) => setDueDate(e.target.value)}
             />
           </div>
-          <div className='create-task__form__group-input'>
+          <div className='form__group-input'>
             <label>Tags</label>
-            <div className='inline'>
+            <div className='inline-wrapper'>
               <input
-                className='create-task__form__input input__box'
+                className='form__input'
                 type='text'
                 name='tag'
                 value={tag}
                 placeholder='Enter new tag'
                 onChange={(e) => setTag(e.target.value)}
               />
-              <button
-                type='button'
-                className='button--rec-solid-grey'
-                onClick={addTagHandler}
-              >
+              <ButtonRecSolidGrey onClickHandler={addTagHandler}>
                 Add Tag
-              </button>
+              </ButtonRecSolidGrey>
             </div>
             {message && <Message>{message}</Message>}
             {tags && (
@@ -151,23 +140,22 @@ const CreateTask = ({ history }) => {
                     key={tag}
                     tagName={tag}
                     removeTagHandler={removeTagHandler}
+                    removable={true}
                   />
                 ))}
               </div>
             )}
           </div>
-        </div>
-        {error && <Message>{error}</Message>}
-        <div className='create-task__form__group-button'>
-          <button className='create-task__form__button' type='submit'>
+
+          {error && <Message>{error}</Message>}
+        </Card>
+        <div className='group-buttons'>
+          <SubmitButtonRecRadSolidBlue marginRight='16px'>
             Create
-          </button>
-          <button
-            className='create-task__form__button'
-            onClick={() => history.push('/dashboard')}
-          >
+          </SubmitButtonRecRadSolidBlue>
+          <ButtonRecRadSolidBlue onClickHandler={cancelHandler}>
             Cancel
-          </button>
+          </ButtonRecRadSolidBlue>
         </div>
       </form>
     </div>

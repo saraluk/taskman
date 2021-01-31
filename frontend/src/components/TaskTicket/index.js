@@ -1,56 +1,57 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getDate } from '../../utils';
 import Tag from '../Tag';
+import { ButtonRecRadSolidGreyMini } from '../Buttons/index.js';
 import './styles.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquare } from '@fortawesome/free-regular-svg-icons';
+import { faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 
-const TaskTicket = ({ task }) => {
+const TaskTicket = ({
+  task,
+  changeTaskStatusHandler,
+  deleteTaskHandler,
+  editTaskHandler,
+}) => {
   const { _id, description, completed, dueDate, tags } = task;
 
-  const getDate = () => {
-    const date = dueDate.split('T')[0];
-    const dateArr = date.split('-');
-    return `${dateArr[1]}/${dateArr[2]}/${dateArr[0]}`;
-  };
-
   return (
-    <Link to={`/dashboard/tasks/${_id}`} className='task-ticket'>
-      <div className='task-ticket__left-column'>
-        <div className='task-ticket__detail-list'>
-          <span className='task-ticket__detail-list__label'>
-            Description :{' '}
-            <span className='task-ticket__detail-list__desc'>
-              {description}
-            </span>
-          </span>
-        </div>
-        <div className='task-ticket__detail-list'>
-          <span className='task-ticket__detail-list__label'>
-            Tags :{' '}
-            {tags &&
-              tags.map((tag) => (
-                <Tag key={tag._id} tagName={tag.tag} display={true} />
-              ))}
-          </span>
+    <Link to={`/dashboard/tasks/view/${_id}`} className='task-ticket'>
+      <div className='task-ticket__checkbox'>
+        <FontAwesomeIcon
+          icon={completed ? faCheckSquare : faSquare}
+          onClick={() => changeTaskStatusHandler(task._id)}
+        />
+      </div>
+      <div className='task-ticket__desc'>
+        <pre>{description}</pre>
+        <div className='tags'>
+          {tags && tags.map((tag) => <Tag key={tag._id} tagName={tag.tag} />)}
         </div>
       </div>
-      <div className='task-ticket__right-column'>
-        <div className='task-ticket__detail-list'>
-          <span className='task-ticket__detail-list__label'>
-            Status :{' '}
-            <span className='task-ticket__detail-list__desc'>
-              {completed ? 'Completed' : 'Incomplete'}
-            </span>
-          </span>
-        </div>
-        <div className='task-ticket__detail-list'>
-          <span className='task-ticket__detail-list__label'>
-            Due date :{' '}
-            <span className='task-ticket__detail-list__desc'>{getDate()}</span>
-          </span>
-        </div>
+      <div className='task-ticket__status__date'>
+        <p>
+          Status : <span>{completed ? 'Completed' : 'Incomplete'}</span>
+        </p>
+        <p>
+          Due date : <span>{dueDate && getDate(dueDate)}</span>
+        </p>
+      </div>
+      <div className='task-ticket__buttons'>
+        <ButtonRecRadSolidGreyMini
+          onClickHandler={(e) => editTaskHandler(e, _id)}
+        >
+          Edit
+        </ButtonRecRadSolidGreyMini>
+        <ButtonRecRadSolidGreyMini
+          onClickHandler={(e) => deleteTaskHandler(e, _id)}
+        >
+          Delete
+        </ButtonRecRadSolidGreyMini>
       </div>
       <div
-        className={`task-ticket__status-tab ${
+        className={`task-ticket__color-tab ${
           completed ? 'green-tab' : 'red-tab'
         }`}
       ></div>

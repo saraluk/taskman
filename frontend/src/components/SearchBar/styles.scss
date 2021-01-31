@@ -4,16 +4,16 @@
   width: 250px;
 
   &__label {
-    @include font-styles($dark-grey-color, $smaller-size, $light)
+    @include font-styles($darker-blue-color, $smaller-size, $light);
   }
 
   &__box {
-    border: solid 1px $medium-grey-color;
+    border: solid 1px $darker-blue-color;
     border-radius: 40px;
     padding: $xxs-space $s-space;
     height: 32px;
     display: flex;
-    align-items: center
+    align-items: center;
   }
 
   &__input {

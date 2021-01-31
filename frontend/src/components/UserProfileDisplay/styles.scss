@@ -10,13 +10,17 @@
     border-radius: 50%;
     margin-top: $xxl-space;
   }
- 
+
   &__title {
     margin-top: $xs-space;
-    @include font-styles($white, $smaller-size, $regular)
+    @include font-styles($white, $smaller-size, $regular);
+    text-align: center;
+    overflow-wrap: break-word;
   }
 
   &__subtitle {
-    @include font-styles($white, $smaller-size, $light)
+    @include font-styles($white, $smaller-size, $light);
+    text-align: center;
+    overflow-wrap: break-word;
   }
 }

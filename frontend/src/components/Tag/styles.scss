@@ -1,12 +1,13 @@
 @import '../../styles/settings';
 
 .tag {
-  padding: 0px $xxs-space;
+  padding: 2px $xxs-space;
   border: 1px solid $medium-grey-color;
   background: $light-grey-color;
   border-radius: $l-radius;
-  @include font-styles($dark-grey-color, $smaller-size, $light);
+  @include font-styles($dark-grey-color, $mini-size, $light);
   margin-right: $xxs-space;
+  margin-top: $xxs-space;
 }
 
 .remove-tag__icon {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import UserProfileDisplay from '../UserProfileDisplay';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,13 +13,18 @@ import { logout } from '../../actions/userActions';
 import './styles.scss';
 import UserProfileScreen from '../../screens/UserProfileScreen';
 import CreateTaskScreen from '../../screens/CreateTaskScreen';
-import ViewTaskDetails from '../../screens/ViewTaskDetails';
+import ViewTaskDetailsScreen from '../../screens/ViewTaskDetailsScreen';
+import EditTaskDetailsScreen from '../../screens/EditTaskDetailsScreen';
+import StatisticReport from '../StatisticReport';
 
 const PageLayout = ({ history }) => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  const taskList = useSelector((state) => state.taskList);
+  const { tasks } = taskList;
 
+  // Redirect user to login if not login
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
@@ -30,11 +35,18 @@ const PageLayout = ({ history }) => {
     dispatch(logout(history));
   };
 
+  const completedCount = tasks.filter((task) => task.completed).length;
+  const incompleteCount = tasks.filter((task) => !task.completed).length;
+
   return (
     <>
       <div className='page'>
         <nav className='page__nav'>
           <UserProfileDisplay />
+          <StatisticReport
+            completedTasks={completedCount}
+            incompleteTasks={incompleteCount}
+          />
           <SideNav />
           <button onClick={logoutHandler} className='button--signout'>
             <FontAwesomeIcon icon={faSignOutAlt} />
@@ -45,14 +57,19 @@ const PageLayout = ({ history }) => {
           <Switch>
             <Route path={`/dashboard`} exact component={DashboardScreen} />
             <Route
-              path={`/dashboard/create-task`}
+              path={`/dashboard/tasks/create`}
               exact
               component={CreateTaskScreen}
             />
             <Route
-              path={`/dashboard/tasks/:id`}
+              path={`/dashboard/tasks/view/:id`}
               exact
-              component={ViewTaskDetails}
+              component={ViewTaskDetailsScreen}
+            />
+            <Route
+              path={`/dashboard/tasks/edit/:id`}
+              exact
+              component={EditTaskDetailsScreen}
             />
             <Route path={`/manage-tasks`} exact component={ManageTasksScreen} />
             <Route path={`/settings`} exact component={SettingsScreen} />
