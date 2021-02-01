@@ -1,0 +1,21 @@
+@import '../../styles/settings';
+
+.report {
+  margin-top: $xl-space;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  padding-right: $s-space;
+
+  div {
+    label {
+      @include font-styles($white, $mini-size, $extra-light);
+      text-align: center;
+    }
+
+    p {
+      @include font-styles($white, $medium-size, $regular);
+      text-align: center;
+    }
+  }
+}
